@@ -28,14 +28,14 @@ namespace IterationExercises
 
             ////Exercise #2 & #3
             int lambchop = 4;
-            for (; ; )
+            while (true)
             {
                 Console.WriteLine("This is the song that never ends!"); //Infinite
                 Console.WriteLine("It goes on and on my friends!");      //Loop//
                 if (lambchop <= 10)
-                {
-                    break;
+                {                    
                     Console.WriteLine("Make it stop!");
+                    break;
                 }
             }
             Console.ReadLine();
@@ -103,7 +103,7 @@ namespace IterationExercises
 
             //Exercise #9 and #10
             List<string> clothesInventory = new List<string>() { "Blue Jeans", "White T-Shirt", "Black Slacks", "Floral Skirt", "Blue Tank Top", "Blue Jeans", "Red Shorts", "White Tank Top", "Floral Skirt", "Purple Tank Top", "White Sweater" };
-
+            
             Console.WriteLine("Please select an article of clothing.");
             string c = Console.ReadLine();
 
@@ -112,14 +112,16 @@ namespace IterationExercises
                 if (clothesInventory[index] == c)
                 {
                     Console.WriteLine(c + " is indexed at " + index);
-
                 }
                 else
-                {
-                    Console.WriteLine("I do not have that piece of clothing on my inventory list");
+                    Console.WriteLine("I do not have that peice on my inventory list");
                     break;
-                }
             }
+            
+            
+                
+                
+                
             Console.ReadLine();
             //End Exercise #9 & #10
 
@@ -137,7 +139,7 @@ namespace IterationExercises
                     dups.Add(color);
             }
             foreach (string color in dups)
-                Console.Write(color);
+                Console.Write(color+" is a duplicate.");
 
             Console.ReadLine();
         //End Excerise #11
