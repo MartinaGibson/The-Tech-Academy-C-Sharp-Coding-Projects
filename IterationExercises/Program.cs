@@ -8,38 +8,55 @@ namespace IterationExercises
     {
         static void Main(string[] args)
         {
-            ////Exercise #1
-            Console.WriteLine("What are your top 5 favorite animals? Please press enter after each entry.");
-            string[] animals = new string[5];
+            //#1 Resubmission
 
-            for (int a = 0; a < animals.Length; a++)
+            Console.WriteLine("Enter in 5 adjective. Please press enter after each entry.");
+            String[] animals = { " Dog", " Eagle", " Lion", " Monkey", " Cat" };
+            System.Text.StringBuilder adjective = new System.Text.StringBuilder();
+            
+            foreach (string animal in animals)
             {
-                animals[a] = Console.ReadLine();
-            }
+                adjective.Append(Console.ReadLine());
 
-            Console.WriteLine("Your favorite animals are ");
-
-            for (int zoo = 0; zoo < animals.Length; zoo++)
-            {
-                Console.WriteLine(animals[zoo]);
+                adjective.Append(animal).AppendLine();
             }
+            Console.WriteLine(adjective.ToString());
             Console.ReadLine();
-            ////End Exercise #1
 
-            ////Exercise #2 & #3
+
+            //////Exercise #1
+            //Console.WriteLine("What are your top 5 favorite animals? Please press enter after each entry.");
+            //string[] animals = new string[5];
+
+            //for (int a = 0; a < animals.Length; a++)
+            //{
+            //    animals[a] = Console.ReadLine();
+            //}
+
+            //Console.WriteLine("Your favorite animals are ");
+
+            //for (int zoo = 0; zoo < animals.Length; zoo++)
+            //{
+            //    Console.WriteLine(animals[zoo]);
+            //}
+            //Console.ReadLine();
+
+            //////End Exercise #1
+
+            //////Exercise #2 & #3
             int lambchop = 4;
             while (true)
             {
                 Console.WriteLine("This is the song that never ends!"); //Infinite
                 Console.WriteLine("It goes on and on my friends!");      //Loop//
                 if (lambchop <= 10)
-                {                    
+                {
                     Console.WriteLine("Make it stop!");
                     break;
                 }
             }
             Console.ReadLine();
-            ////End Exercise #2 & #3
+            //////End Exercise #2 & #3
 
             ////Exercise #4 & #5
             int[] temperatures = { 45, 55, 53, 32, 44, 60, 59, 20, 30, 62, 70 };
@@ -103,7 +120,7 @@ namespace IterationExercises
 
             //Exercise #9 and #10
             List<string> clothesInventory = new List<string>() { "Blue Jeans", "White T-Shirt", "Black Slacks", "Floral Skirt", "Blue Tank Top", "Blue Jeans", "Red Shorts", "White Tank Top", "Floral Skirt", "Purple Tank Top", "White Sweater" };
-            
+
             Console.WriteLine("Please select an article of clothing.");
             string c = Console.ReadLine();
 
@@ -115,15 +132,15 @@ namespace IterationExercises
                 }
                 else
                     Console.WriteLine("I do not have that peice on my inventory list");
-                    break;
+                break;
             }
-            
-            
-                
-                
-                
+
+
+
+
+
             Console.ReadLine();
-            //End Exercise #9 & #10
+            ////End Exercise #9 & #10
 
             //Exercise #11
 
@@ -131,43 +148,57 @@ namespace IterationExercises
             List<string> dups = new List<string>();
             List<string> noDup = new List<string>();
 
+            Console.WriteLine("Do we have any duplicates on the list?");
+
             foreach (string color in rainbow)
             {
+                
                 if (!noDup.Contains(color))
+                {
                     noDup.Add(color);
+                    
+                }
                 else
                     dups.Add(color);
+
+                bool trueOrFalse = dups.Contains(color);                                   
+                if (trueOrFalse == true)
+                {
+                   Console.WriteLine(trueOrFalse);
+                    Console.WriteLine(color+ " is a duplicate.");
+                }            
+                               
             }
-            foreach (string color in dups)
-                Console.Write(color+" is a duplicate.");
-
             Console.ReadLine();
-        //End Excerise #11
-
-               
-                   
-                     
-                
-                    
-                
-                
-                
-               
-                
-
-                
-
-            
+                      
+                                 
+            //End Excerise #11
 
 
 
-        
-            
-            
-                
-            
-            
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 }
+
