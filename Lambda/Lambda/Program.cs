@@ -36,36 +36,34 @@ namespace Lambda
                 if (e.firstName == "Joe")
                 {
                     JoeList.Add(e);
-                    Console.WriteLine(e);
+                    Console.WriteLine("All employee's named Joe: " + e);
 
                 }
             }
+
+            //List #2
 
             List<Employees> temp1 = employeeList
                 .Where(x => x.firstName == "Joe")
                 .ToList();
 
-            Console.WriteLine(temp1);
-            Console.WriteLine(temp1.ToString());
-            Console.WriteLine(temp1.Where(x => x.firstName == "Joe"));
+
+            Console.WriteLine("Lambda Joe List:  ");
+            temp1.ForEach(j => Console.WriteLine(j));
+            Console.WriteLine();
+
+            //===================
+            //List #3
 
             List<Employees> temp2 = employeeList
                 .Where(x => x.id > 5)
                 .ToList();
 
-            Console.WriteLine(temp2);
-            Console.WriteLine(temp2.ToString());
+            Console.WriteLine("ID numbers greater than 5: ");
+            temp2.ForEach(n => Console.WriteLine(n));
+            Console.WriteLine();
                                                          
             Console.ReadLine();
-
-
-
-
-
-
-
-
-
 
 
 
