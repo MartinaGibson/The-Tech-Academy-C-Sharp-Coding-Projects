@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+<form submit="/Add" method="post">
+    <input name="FirstName" type="text" placeholder="First Name" />
+    <br />
+    <input name="LastName" type="text" placeholder="Last Name" />
+    <br />
+    <input name="EmailAddress" type= "email" placeholder="Email Address" />
+    <br />
+    <input name="DOB" type="datetime" placeholder="Date Of Birth YYYY/MM/DD" />
+    <br />
+    <input name="CarYear" type="number"  placeholder="Car Year YYYY"/>
+    <br />
+    <input name="CarMake" type="text" placeholder="Car Make"/>
+    <br />
+    <input name="CarModel" type="text" placeholder="Car Model" />
+    <br />
+    <input name="DUI" type="text" placeholder="Have you ever had a DUI?" />
+    <br />
+    <input name="NumberOfSpeedTix" type="number" placeholder="How many speeding tickets do you have?" />
+    <br />
+    <input name="Coverage" type="text" placeholder="Full Coverage or Liability?" />
+    <br />
+    <button type="submit">Add Customer</button>
+</form>
+

@@ -1,0 +1,19 @@
+﻿@model List<QCarInsurance.Models.Customer>
+
+@{ 
+    ViewBag.Title = "Index";
+}
+
+<h2>Customers</h2>
+
+@{ 
+    foreach (var customer in Model)
+    {
+        <h2><a href="/customer/details/@customer.Id">@customer.FirstName
+            @customer.LastName @customer.EmailAddress @customer.DOB
+            @customer.CarYear @customer.CarMake @customer.CarModel
+            @customer.DUI @customer.NumberOfSpeedTix @customer.Coverage
+         </a></h2>
+    }
+}
+<a href="/customer/add">Add</a>
