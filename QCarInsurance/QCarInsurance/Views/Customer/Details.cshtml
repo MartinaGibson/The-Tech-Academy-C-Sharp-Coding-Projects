@@ -5,12 +5,40 @@
 }
 
 <h2>Details</h2>
+<br />
+<h3>Personal Info</h3>
 
 First name: @Model.FirstName
 <br />
 Last name: @Model.LastName
 <br />
-Id: @Model.Id
+Quote Id: @Model.Id
 <br />
-<a href="../edit/@Model.Id">Edit</a>
+Email address: @Model.EmailAddress
+<br />
+Date of birth: @Model.DOB
+<br />
+<h3>Car Info</h3>
+Car year: @Model.CarYear
+<br />
+Car make: @Model.CarMake
+<br />
+Car model: @Model.CarModel
+<br />
+<h3>Driving History</h3>
+<br />
+DUI?: @Model.DUI
+<br />
+Number of speeding tickets: @Model.NumberOfSpeedTix
+<br />
+<h3>Elected Coverage</h3>
+<br />
+@Model.Coverage
+<br />
+<br />
+@Model.Quote
+<br />
+<a href="../edit/@Model.Id">Edit Info</a>
+<br />
+<a href="../getQuote/@Model.Id">Get Quote</a>
 

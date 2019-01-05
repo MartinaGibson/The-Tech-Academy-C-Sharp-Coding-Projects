@@ -9,11 +9,7 @@
 @{ 
     foreach (var customer in Model)
     {
-        <h2><a href="/customer/details/@customer.Id">@customer.FirstName
-            @customer.LastName @customer.EmailAddress @customer.DOB
-            @customer.CarYear @customer.CarMake @customer.CarModel
-            @customer.DUI @customer.NumberOfSpeedTix @customer.Coverage
-         </a></h2>
+        <h2><a href="/customer/details/@customer.Id">@customer.FirstName @customer.LastName </a></h2>
     }
 }
-<a href="/customer/add">Add</a>
+<a href="/customer/add">Add Customer</a>

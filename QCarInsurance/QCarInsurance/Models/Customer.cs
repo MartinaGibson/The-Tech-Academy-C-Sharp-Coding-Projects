@@ -18,6 +18,7 @@ namespace QCarInsurance.Models
         public string DUI { get; set; }
         public int NumberOfSpeedTix { get; set; }
         public string Coverage { get; set; }
+        public int Quote { get; set; }
         
     }
 }
