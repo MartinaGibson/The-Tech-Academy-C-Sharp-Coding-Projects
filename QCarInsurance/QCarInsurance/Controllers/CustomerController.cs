@@ -12,94 +12,93 @@ namespace QCarInsurance.Controllers
     public class CustomerController : Controller
     {
         private string _connectionString = @"Data Source = (localdb)\MSSQLLocalDB;Initial Catalog = Insurance; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        
+
         // GET: Customer
         public ActionResult Index()
         {
             string queryString = "SELECT * FROM cqTable";
             List<Customer> customers = new List<Customer>();
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+
+            //===============================================
+            //Not Sure how to make the final runningTotal to post to customer.Quote
+            foreach (var customer in customers)
             {
-                SqlCommand command = new SqlCommand(queryString, connection);
+                int qbase = 50;
+                DateTime todayDate = DateTime.Now;
+                var custAge = todayDate.Year - customer.DOB.Year;
+                int runningTotal = 0;
 
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                if (custAge < 25 || custAge > 100)
                 {
-                    Customer customer = new Customer();
-                    customer.Id = Convert.ToInt32(reader["Id"]);
-                    customer.FirstName = reader["FirstName"].ToString();
-                    customer.LastName = reader["LastName"].ToString();
-                    customer.EmailAddress = reader["EmailAddress"].ToString();
-                    customer.DOB = Convert.ToDateTime(reader["DOB"]);
-                    customer.CarYear = Convert.ToInt32(reader["CarYear"]);
-                    customer.CarMake = reader["CarMake"].ToString();
-                    customer.CarModel = reader["CarModel"].ToString();
-                    customer.DUI = reader["DUI"].ToString();
-                    customer.NumberOfSpeedTix = Convert.ToInt32(reader["NumberOfSpeedTix"]);
-                    customer.Coverage = reader["Coverage"].ToString();
-                    customer.Quote = Convert.ToInt32(reader["Quote"]);
-                    customers.Add(customer);
+                    int riskyDriver = 25;
+                    runningTotal = qbase + riskyDriver;
+
                 }
-                foreach (var customer in customers)
+                else if (Convert.ToInt32(custAge) < 18)
                 {
-                    int qbase = 50;
-                    DateTime todayDate = DateTime.Now;
-                    var custAge = todayDate.Year - customer.DOB.Year;
-                    int runningTotal = 0;
-
-                    if (custAge < 25 || custAge > 100)
-                    {
-                        int riskyDriver = 25;
-                        runningTotal = qbase + riskyDriver;
-
-                    }
-                    else if (Convert.ToInt32(custAge) < 18)
-                    {
-                        int youngDriver = 100;
-                        runningTotal = qbase + youngDriver;
-                    }
-                    
-
-                    if (customer.CarYear < 2000 || customer.CarYear > 2015)
-                    {
-                        int carAge = 25;
-                         runningTotal = qbase + carAge;
-                    }
-                    if (customer.CarMake == "Porsche")
-                    {
-                        int makePorsche = 25;
-                        runningTotal = qbase + makePorsche;
-                        
-                        if (customer.CarModel == "911 Carrera")
-                        {
-                            int porscheCarrera = makePorsche + 25;
-                            runningTotal = porscheCarrera + qbase;
-                        }
-                    }
-                    if (customer.NumberOfSpeedTix > 0)
-                    {
-                        int speedyDriver = (10 * customer.NumberOfSpeedTix);
-                        runningTotal = speedyDriver + qbase;
-                    }
-                    else
-                    {
-                        runningTotal = qbase;
-                    }
-                    runningTotal = customer.Quote;
-                    
-                    
+                    int youngDriver = 100;
+                    runningTotal = qbase + youngDriver;
                 }
-                connection.Close();
+
+
+                if (customer.CarYear < 2000 || customer.CarYear > 2015)
+                {
+                    int carAge = 25;
+                    runningTotal = qbase + carAge;
+                }
+                if (customer.CarMake == "Porsche")
+                {
+                    int makePorsche = 25;
+                    runningTotal = qbase + makePorsche;
+
+                    if (customer.CarModel == "911 Carrera")
+                    {
+                        int porscheCarrera = makePorsche + 25;
+                        runningTotal = porscheCarrera + qbase;
+                    }
+                }
+                if (customer.NumberOfSpeedTix > 0)
+                {
+                    int speedyDriver = (10 * customer.NumberOfSpeedTix);
+                    runningTotal = speedyDriver + qbase;
+                }
+                else
+                {
+                    runningTotal = qbase;
+                }
+                runningTotal = customer.Quote;
+
+
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    SqlCommand command = new SqlCommand(queryString, connection);
+
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Customer customer = new Customer();
+                        customer.Id = Convert.ToInt32(reader["Id"]);
+                        customer.FirstName = reader["FirstName"].ToString();
+                        customer.LastName = reader["LastName"].ToString();
+                        customer.EmailAddress = reader["EmailAddress"].ToString();
+                        customer.DOB = Convert.ToDateTime(reader["DOB"]);
+                        customer.CarYear = Convert.ToInt32(reader["CarYear"]);
+                        customer.CarMake = reader["CarMake"].ToString();
+                        customer.CarModel = reader["CarModel"].ToString();
+                        customer.DUI = reader["DUI"].ToString();
+                        customer.NumberOfSpeedTix = Convert.ToInt32(reader["NumberOfSpeedTix"]);
+                        customer.Coverage = reader["Coverage"].ToString();
+                        customer.Quote = Convert.ToInt32(reader["Quote"]);
+                        customers.Add(customer);
+
+                    };
+                    connection.Close();
+                }
+                return View(customers);
             }
-            return View(customers);
-        }
-
-        public ActionResult Add()
-        {
-            return View();
         }
 
         [HttpPost]
@@ -307,7 +306,7 @@ namespace QCarInsurance.Controllers
                     {
                         int youngDriver = 100;
                         runningTotal = runningTotal + youngDriver;                        
-                    }
+                    };
                     
 
                     if (customer.CarYear < 2000 || customer.CarYear > 2015)
@@ -315,7 +314,7 @@ namespace QCarInsurance.Controllers
                         int carAge = 25;
                         runningTotal = runningTotal + carAge;
                         
-                    }
+                    };
                     if (customer.CarMake == "Porsche")
                     {
                         int makePorsche = 25;
@@ -327,23 +326,24 @@ namespace QCarInsurance.Controllers
                             runningTotal = runningTotal + porscheCarrera;
                             
                         }
-                    }
+                    };
                     if (customer.NumberOfSpeedTix > 0)
                     {
                         int speedyDriver = (10 * customer.NumberOfSpeedTix);
                         runningTotal = runningTotal + speedyDriver;
 
-                    }
+                    };
                     if (customer.DUI == "Yes" || customer.DUI == "Yeah" || customer.DUI == "yes" || customer.DUI == "y" || customer.DUI == "Y")
                     {
                         int duiClub = (runningTotal / 4) + runningTotal;
                         runningTotal = duiClub + runningTotal;
-                    }
+                    };
                     if (customer.Coverage == "Full Coverage" || customer.Coverage == "full coverage")
                     {
                         int fc = (runningTotal / 2) + runningTotal;
                         runningTotal = fc + runningTotal;
-                    }
+                    };
+                    customer.Quote = runningTotal;
                     
                 }
                 connection.Close();
