@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+        @using (Html.BeginForm("QuoteInsurance", "Home", FormMethod.Post, new { id = "signupform" }))
+        {
+            <form submit="/QuoteInsurance" method="post">
+
+                <input name="firstName" type="text" placeholder="First Name" />
+                <br />
+                <input name="lastName" type="text" placeholder="Last Name" />
+                <br />
+                <input name="emailAddress" type="email" placeholder="Email Address" />
+                <br />
+                <input name="dateOfBirth" type="datetime" placeholder="Date Of Birth YYYY/MM/DD" />
+                <br />
+                <input name="carYear" type="number" placeholder="Car Year YYYY" />
+                <br />
+                <input name="carMake" type="text" placeholder="Car Make" />
+                <br />
+                <input name="carModel" type="text" placeholder="Car Model" />
+                <br />
+                <input name="dui" type="text" placeholder="Have you ever had a DUI?" />
+                <br />
+                <input name="speedTix" type="number" placeholder="How many speeding tickets do you have?" />
+                <br />
+                <input name="coverage" type="text" placeholder="Full Coverage or Liability?" />
+                <br />
+                <button type="submit">Get Quote</button>
+            </form>
+
+
+        }

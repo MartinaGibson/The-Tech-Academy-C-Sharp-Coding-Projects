@@ -1,0 +1,29 @@
+﻿@using CarInsurance3.ViewModels
+@model List<custQuotesVM>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Admin</h2>
+<br />
+<br />
+@foreach (var custQuoteVm in Model)
+{
+    <h4>First Name</h4>
+   @custQuoteVm.firstName
+    <br />
+    <h4>Last Name</h4>
+    @custQuoteVm.lastName
+    <br />
+    <h4>Email Address</h4>
+    @custQuoteVm.emailAddress
+    <br />
+    <h4>Customer Quote</h4>
+    @custQuoteVm.quote
+    <br />
+    <br />
+    <br />
+ }
+    
